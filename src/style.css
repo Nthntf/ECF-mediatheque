@@ -1,3 +1,25 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --breakpoint-mobile: 576px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1200px;
+}
+
+.positive-btn {
+    @apply bg-linear-to-r from-emerald-400 via-emerald-500 to-emerald-600 hover:bg-linear-to-br dark:focus:ring-emerald-800 font-medium rounded-xl text-sm px-4 py-2.5 text-center leading-5;
+}
+
+.filter-select {
+    @apply bg-linear-to-r from-emerald-600 via-emerald-500 to-emerald-400 inline-flex items-center justify-center font-medium rounded-xl text-sm px-3 py-2 focus:outline-none;
+}
+
+.table-cell-h {
+    @apply p-2 text-left border-b border-gray-200;
+}
+
+.table-cell {
+    @apply p-2 items-center border-b border-gray-100;
+}

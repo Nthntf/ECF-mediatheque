@@ -4,49 +4,61 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="src/style.css" />
-        <title>Vidéothèque</title>
+        <title>Médiathèque</title>
     </head>
     <body class="flex flex-col justify-center items-center">
-        <header>
-            <h1>Vidéothèque</h1>
-            <a href="/">API film</a>
+        <header
+            class="w-1/1 bg-linear-to-r from-emerald-200 to-emerald-900 dark:from-emerald-900 dark:to-emerald-200 py-9 desktop:text-4xl tablet:text-3xl mobile:text-2xl flex flex-row justify-evenly"
+        >
+            <h1 class="font-medium text-black dark:text-white">Médiathèque</h1>
+            <div class="dark:text-black text-white flex flex-row items-center">
+                <a href="#" class="flex items-center font-medium hover:underline">Vers API Film</a>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-9"
+                >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                </svg>
+            </div>
         </header>
-        <main>
-            <section id="filter-section">
-                <button>Ajouter un film</button>
-                <article>
-                    <label for="filter-select">Trier par</label>
-
-                    <select name="filters" id="filter-select">
+        <main class="desktop:text-3xl tablet:text-2xl mobile:text-xl">
+            <section id="filter-section" class="flex flex-row justify-around my-5">
+                <button type="button" class="positive-btn">Ajouter un film</button>
+                <article class="flex flex-row items-center">
+                    <select name="filters" id="filter-select" class="filter-select">
                         <option value="movie-name">Nom du film</option>
                         <option value="year">Année</option>
                         <option value="author-name">Réalisateur</option>
                     </select>
                 </article>
             </section>
-            <table class="table-auto">
-                <thead>
+            <table class="w-3/4 m-auto table-fixed border-collapse">
+                <thead class="bg-emerald-100">
                     <tr>
-                        <th>Song</th>
-                        <th>Artist</th>
-                        <th>Year</th>
+                        <th class="table-cell-h">Film</th>
+                        <th class="table-cell-h">Année</th>
+                        <th class="table-cell-h">Réalisateur</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                        <td>Malcolm Lockyer</td>
-                        <td>1961</td>
+                <tbody class="h-full">
+                    <tr class="h-16">
+                        <td class="table-cell">The Sliding Mr. Bones</td>
+                        <td class="table-cell">1961</td>
+                        <td class="table-cell">Malcolm Lockyer</td>
                     </tr>
-                    <tr>
-                        <td>Witchy Woman</td>
-                        <td>The Eagles</td>
-                        <td>1972</td>
+                    <tr class="h-16">
+                        <td class="table-cell">Witchy Woman</td>
+                        <td class="table-cell">1972</td>
+                        <td class="table-cell">The Eagles</td>
                     </tr>
-                    <tr>
-                        <td>Shining Star</td>
-                        <td>Earth, Wind, and Fire</td>
-                        <td>1975</td>
+                    <tr class="h-16">
+                        <td class="table-cell">Shining Star</td>
+                        <td class="table-cell">1975</td>
+                        <td class="table-cell">Earth, Wind, and Fire</td>
                     </tr>
                 </tbody>
             </table>
