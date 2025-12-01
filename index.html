@@ -8,7 +8,7 @@
     </head>
     <body class="flex flex-col justify-center items-center">
         <header
-            class="w-1/1 bg-linear-to-r from-emerald-200 to-emerald-900 dark:from-emerald-900 dark:to-emerald-200 py-9 desktop:text-4xl tablet:text-3xl mobile:text-2xl flex flex-row justify-evenly"
+            class="big-text w-1/1 bg-linear-to-r from-emerald-200 to-emerald-900 dark:from-emerald-900 dark:to-emerald-200 py-9 flex flex-row justify-evenly"
         >
             <h1 class="font-medium text-black dark:text-white">Médiathèque</h1>
             <div class="dark:text-black text-white flex flex-row items-center">
@@ -25,7 +25,7 @@
                 </svg>
             </div>
         </header>
-        <main class="desktop:text-3xl tablet:text-2xl mobile:text-xl">
+        <main class="medium-text w-3/4">
             <section id="filter-section" class="flex flex-row justify-around my-5">
                 <button type="button" class="positive-btn">Ajouter un film</button>
                 <article class="flex flex-row items-center">
@@ -36,15 +36,41 @@
                     </select>
                 </article>
             </section>
-            <table class="w-3/4 m-auto table-fixed border-collapse">
-                <thead class="bg-emerald-100">
+            <section
+                id="add-table-section"
+                class="flex flex-col justify-center mx-auto border p-5 w-2/4 m-5 small-text bg-emerald-100"
+            >
+                <label for="movie-name" class="block mb-2.5 font-medium text-heading">Nom du film</label>
+                <input
+                    type="text"
+                    id="movie-name"
+                    class="bg-white border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    placeholder="Deadpool"
+                />
+                <label for="movie-year" class="block mb-2.5 font-medium text-heading">Année</label>
+                <input
+                    type="text"
+                    id="movie-year"
+                    class="bg-white border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    placeholder="2016"
+                />
+                <label for="movie-author" class="block mb-2.5 font-medium text-heading">Réalisateur</label>
+                <input
+                    type="text"
+                    id="movie-author"
+                    class="bg-white border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    placeholder="Tim Miller"
+                />
+            </section>
+            <table class="w-4/4 m-auto table-fixed border-collapse">
+                <thead class="bg-emerald-200">
                     <tr>
                         <th class="table-cell-h">Film</th>
                         <th class="table-cell-h">Année</th>
                         <th class="table-cell-h">Réalisateur</th>
                     </tr>
                 </thead>
-                <tbody class="h-full">
+                <tbody class="bg-stone-100 h-full">
                     <tr class="h-16">
                         <td class="table-cell">The Sliding Mr. Bones</td>
                         <td class="table-cell">1961</td>
