@@ -6,5 +6,26 @@
         <link rel="stylesheet" href="src/style.css" />
         <title>Vidéothèque</title>
     </head>
-    <body></body>
+    <body>
+        <header>
+            <h1>Vidéothèque</h1>
+            <a href="/">API film</a>
+        </header>
+        <main>
+            <section id="filter-section">
+                <button>Ajouter un film</button>
+                <article>
+                    <label for="filter-select">Trier par</label>
+
+                    <select name="filters" id="filter-select">
+                        <option value="movie-name">Nom du film</option>
+                        <option value="year">Année</option>
+                        <option value="author-name">Réalisateur</option>
+                    </select>
+                </article>
+            </section>
+            <section id="movie-section"></section>
+        </main>
+    </body>
+    <script type="module" src="src/app.js"></script>
 </html>
