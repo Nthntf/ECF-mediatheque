@@ -104,10 +104,21 @@
                         <th class="table-cell-h">Film</th>
                         <th class="table-cell-h">Année</th>
                         <th class="table-cell-h">Réalisateur</th>
+                        <th class="table-cell-h"></th>
                     </tr>
                 </thead>
                 <tbody id="movie-table" class="border border-stone-200 h-full"></tbody>
             </table>
         </main>
+        <section
+            id="delet-modal"
+            class="hidden flex-col shadow-[0px_20px_100px_5000px_#00000024] dark:shadow-[0px_20px_100px_5000px_#00000059] small-text bg-white dark:bg-stone-800 dark:text-white border p-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+            <p>Veux-tu vraiment supprimer ce film de ta liste ?</p>
+            <div class="flex flex-row justify-evenly mt-4">
+                <button id="dont-delet-btn" class="negative-btn">Enfait non</button>
+                <button id="delet-btn" class="positive-btn">Oui</button>
+            </div>
+        </section>
     </body>
 </html>
