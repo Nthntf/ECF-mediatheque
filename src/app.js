@@ -24,6 +24,11 @@ let films = [
 ];
 // TODO
 
+const select = $("#filter-select");
+select.on("change", (e) => {
+    console.log(select.val());
+});
+
 // Ajoute chaque element de 'films' dans #movie-table
 films.forEach((movie) => {
     $("#movie-table").append(`<tr class="h-16">
