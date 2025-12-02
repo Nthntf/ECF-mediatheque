@@ -23,7 +23,7 @@ let films = [
     },
 ];
 
-// boucle sur tout le tableau filtré (pas filtré au lancement du site)
+// boucle sur tout le tableau filtré
 function renderTable(data) {
     $("#movie-table").html("");
     data.forEach((movie) => {
@@ -37,7 +37,8 @@ function renderTable(data) {
     });
 }
 
-renderTable(films);
+// filtre une première fois par nom au lancement du site
+renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
 
 // créer un nouveau tableau avec conditions de filtre en fonction de <select>.value
 $("#filter-select").on("change", () => {
