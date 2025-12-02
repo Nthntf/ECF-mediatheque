@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 let films = [
     {
         title: "Deadpool",
