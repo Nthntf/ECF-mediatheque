@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html class="" lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,11 +7,43 @@
         <script type="module" src="src/app.js" defer></script>
         <title>Médiathèque</title>
     </head>
-    <body class="flex flex-col justify-center items-center">
+    <body class="flex flex-col justify-center items-center dark:bg-stone-800 dark:text-white">
         <header
             class="big-text w-1/1 bg-linear-to-r from-emerald-200 to-emerald-900 dark:from-emerald-900 dark:to-emerald-200 py-9 flex flex-row justify-evenly"
         >
-            <h1 class="font-medium text-black dark:text-white">Médiathèque</h1>
+            <h1 class="font-medium text-black dark:text-white flex items-center">Médiathèque</h1>
+            <button id="light-dark-btn" class="hover:cursor-pointer">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="white"
+                    id="THESUN"
+                    class="size-8"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                    />
+                </svg>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="white"
+                    id="THEMOON"
+                    class="size-8 hidden"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                    />
+                </svg>
+            </button>
             <div class="dark:text-black text-white flex flex-row items-center">
                 <a href="#" class="flex items-center font-medium hover:underline">Vers API Film</a>
                 <svg
@@ -28,7 +60,7 @@
         </header>
         <main class="medium-text w-3/4">
             <section id="filter-section" class="flex flex-row justify-around my-5">
-                <button type="button" class="positive-btn">Ajouter un film</button>
+                <button type="button" id="add-table-btn" class="positive-btn">Ajouter un film</button>
                 <article class="flex flex-row items-center">
                     <p class="small-text me-1.5">trier par:</p>
                     <select name="filters" id="filter-select" class="filter-select">
@@ -40,33 +72,33 @@
             </section>
             <section
                 id="add-table-section"
-                class="flex flex-col justify-center mx-auto border p-5 desktop:w-2/4 tablet:w-3/4 w-4/4 m-5 small-text bg-emerald-100"
+                class="hidden flex-col justify-center mx-auto border p-5 desktop:w-2/4 tablet:w-3/4 w-4/4 m-5 small-text bg-emerald-100 dark:bg-emerald-500"
             >
-                <label for="movie-name" class="block mb-2.5 font-medium text-heading">Nom du film</label>
+                <label for="input-name" class="block mb-2.5 font-medium text-heading">Nom du film</label>
                 <input
                     type="text"
-                    id="movie-name"
-                    class="bg-white border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    id="input-name"
+                    class="bg-white dark:bg-gray-200 dark:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                     placeholder="Deadpool"
                 />
-                <label for="movie-year" class="block mb-2.5 font-medium text-heading">Année</label>
+                <label for="input-year" class="block mb-2.5 font-medium text-heading">Année</label>
                 <input
                     type="text"
-                    id="movie-year"
-                    class="bg-white border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    id="input-year"
+                    class="bg-white dark:bg-gray-200 dark:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                     placeholder="2016"
                 />
-                <label for="movie-author" class="block mb-2.5 font-medium text-heading">Réalisateur</label>
+                <label for="input-author" class="block mb-2.5 font-medium text-heading">Réalisateur</label>
                 <input
                     type="text"
-                    id="movie-author"
-                    class="bg-white border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                    id="input-author"
+                    class="bg-white dark:bg-gray-200 dark:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                     placeholder="Tim Miller"
                 />
                 <button type="button" class="w-fit mt-3 positive-btn self-center">Envoyer</button>
             </section>
             <table class="w-4/4 m-auto table-fixed border-collapse">
-                <thead class="bg-emerald-200">
+                <thead class="border border-stone-200 bg-emerald-200 dark:bg-emerald-700">
                     <tr>
                         <th class="table-cell-h">Film</th>
                         <th class="table-cell-h">Année</th>
