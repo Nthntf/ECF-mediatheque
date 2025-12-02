@@ -24,7 +24,16 @@ let films = [
 ];
 // TODO
 
-// Montre ou cache la section pour ajouter un film en fonction de sa classe déjà présente
+// Ajoute chaque element de 'films' dans #movie-table
+films.forEach((movie) => {
+    $("#movie-table").append(`<tr class="h-16">
+                        <td class="table-cell">${movie.title}</td>
+                        <td class="table-cell">${movie.years}</td>
+                        <td class="table-cell">${movie.authors}</td>
+                    </tr>`);
+});
+
+// Montre/cache la section pour ajouter un film en fonction de sa classe présente
 $("#add-table-btn").on("click", () => {
     const tableSection = $("#add-table-section");
     if (tableSection.hasClass("hidden")) {
