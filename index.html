@@ -29,6 +29,7 @@
             <section id="filter-section" class="flex flex-row justify-around my-5">
                 <button type="button" class="positive-btn">Ajouter un film</button>
                 <article class="flex flex-row items-center">
+                    <p class="small-text me-1.5">trier par:</p>
                     <select name="filters" id="filter-select" class="filter-select">
                         <option value="movie-name">Nom du film</option>
                         <option value="year">Année</option>
@@ -38,7 +39,7 @@
             </section>
             <section
                 id="add-table-section"
-                class="flex flex-col justify-center mx-auto border p-5 w-2/4 m-5 small-text bg-emerald-100"
+                class="flex flex-col justify-center mx-auto border p-5 desktop:w-2/4 tablet:w-3/4 w-4/4 m-5 small-text bg-emerald-100"
             >
                 <label for="movie-name" class="block mb-2.5 font-medium text-heading">Nom du film</label>
                 <input
@@ -61,6 +62,7 @@
                     class="bg-white border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
                     placeholder="Tim Miller"
                 />
+                <button type="button" class="w-fit mt-3 positive-btn self-center">Envoyer</button>
             </section>
             <table class="w-4/4 m-auto table-fixed border-collapse">
                 <thead class="bg-emerald-200">
@@ -70,7 +72,7 @@
                         <th class="table-cell-h">Réalisateur</th>
                     </tr>
                 </thead>
-                <tbody class="bg-stone-100 h-full">
+                <tbody class="border border-stone-200 h-full">
                     <tr class="h-16">
                         <td class="table-cell">The Sliding Mr. Bones</td>
                         <td class="table-cell">1961</td>
