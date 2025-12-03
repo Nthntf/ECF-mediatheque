@@ -1,43 +1,85 @@
 import $ from "jquery";
 
+const html = $("html");
 const sunSVG = $("#THESUN");
 const moonSVG = $("#THEMOON");
-const html = $("html");
+const secretSVG = $("#THESECRET");
+
+const secretTheme = "secret";
+const clicksCountNeeded = 5;
+let clickCount = 0;
+let lastClickTime = 0;
 
 initTheme();
 
-// Gère le thème clair/sombre
 $("#light-dark-btn").on("click", () => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-        // Remplace svg lune par svg soleil et ajoute le thème clair sur <html>
-        sunSVG.removeClass("hidden").addClass("flex");
-        moonSVG.removeClass("flex").addClass("hidden");
-        html.removeClass("dark");
-        localStorage.setItem("theme", "white");
-    } else if (theme === "white" || theme === "") {
-        // Remplace svg soleil par svg lune et ajoute le thème sombre sur <html>
-        moonSVG.removeClass("hidden").addClass("flex");
-        sunSVG.removeClass("flex").addClass("hidden");
-        html.addClass("dark");
-        localStorage.setItem("theme", "dark");
+    // return true si clique rapide
+    if (handleSecretClick()) {
+        return;
     }
+
+    // Si theme secret déjà activé retour au toggle normal
+    if (localStorage.getItem("theme") === secretTheme) {
+        toggleNormalTheme();
+        return;
+    }
+
+    // Toggle normal white <-> dark
+    toggleNormalTheme();
 });
 
-// Gère l'affichage du theme au lancement du site
+// Récupère le theme dans localstorage et l'applique (white si rien)
 function initTheme() {
-    const theme = localStorage.getItem("theme");
+    const theme = localStorage.getItem("theme") || "white";
+    applyTheme(theme);
+}
 
-    if (theme === "white" || theme === null) {
-        // Affiche theme clair si white ou si rien
-        sunSVG.removeClass("hidden").addClass("flex");
-        moonSVG.removeClass("flex").addClass("hidden");
-        html.removeClass("dark");
-        localStorage.setItem("theme", "white");
-    } else if (theme === "dark") {
-        // Affiche theme sombre si dark est présent dans le localStorage
-        moonSVG.removeClass("hidden").addClass("flex");
-        sunSVG.removeClass("flex").addClass("hidden");
-        html.addClass("dark");
+function handleSecretClick() {
+    const now = Date.now();
+
+    // Si interval entre 2 clique respecté -> count++
+    if (now - lastClickTime < 250) {
+        clickCount++;
+    } else {
+        clickCount = 1;
     }
+
+    lastClickTime = now;
+
+    // Si count atteint applique theme secret sinon retour à count 0
+    if (clickCount >= clicksCountNeeded) {
+        clickCount = 0;
+        applyTheme(secretTheme);
+        return true;
+    }
+
+    return false;
+}
+
+// Toggle white <-> dark
+function toggleNormalTheme() {
+    const current = localStorage.getItem("theme") || "white";
+
+    if (current === "dark") applyTheme("white");
+    else applyTheme("dark");
+}
+
+function applyTheme(theme) {
+    // vide les classes de html
+    html.removeClass("dark secret white");
+
+    if (theme === "dark") html.addClass("dark");
+    if (theme === secretTheme) html.addClass("secret");
+
+    // cache tout les svg
+    sunSVG.addClass("hidden").removeClass("flex");
+    moonSVG.addClass("hidden").removeClass("flex");
+    secretSVG.addClass("hidden").removeClass("flex");
+
+    // raffiche le svg correspondant au theme
+    if (theme === "white") sunSVG.removeClass("hidden").addClass("flex");
+    if (theme === "dark") moonSVG.removeClass("hidden").addClass("flex");
+    if (theme === secretTheme) secretSVG.removeClass("hidden").addClass("flex");
+
+    localStorage.setItem("theme", theme);
 }

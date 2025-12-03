@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant secret (&:where(.secret, .secret *));
 
 @theme {
     --breakpoint-mobile: 576px;
@@ -8,16 +9,20 @@
     --breakpoint-desktop: 1200px;
 }
 
+.cool-transition {
+    @apply transition delay-0 duration-100 ease-in;
+}
+
 .positive-btn {
-    @apply hover:cursor-pointer bg-linear-to-r from-emerald-200 via-emerald-300 to-emerald-400 dark:from-emerald-400 dark:via-emerald-500 dark:to-emerald-600 hover:bg-linear-to-br font-medium rounded-xl text-sm px-4 py-2.5 text-center leading-5;
+    @apply hover:cursor-pointer transition delay-0 duration-100 ease-in hover:-translate-y-1 hover:scale-110 bg-linear-to-r from-emerald-200 via-emerald-300 to-emerald-400 dark:from-emerald-400 dark:via-emerald-500 dark:to-emerald-600 secret:from-purple-400 secret:via-purple-500 secret:to-purple-600 hover:bg-linear-to-br font-medium rounded-xl text-sm px-4 py-2.5 text-center leading-5;
 }
 
 .negative-btn {
-    @apply hover:cursor-pointer bg-linear-to-r from-red-200 via-red-300 to-red-400 dark:from-red-400 dark:via-red-500 dark:to-red-600 hover:bg-linear-to-br font-medium rounded-xl text-sm px-4 py-2.5 text-center leading-5;
+    @apply hover:cursor-pointer transition delay-0 duration-100 ease-in hover:-translate-y-1 hover:scale-110 bg-linear-to-r from-red-200 via-red-300 to-red-400 dark:from-red-400 dark:via-red-500 dark:to-red-600 hover:bg-linear-to-br font-medium rounded-xl text-sm px-4 py-2.5 text-center leading-5;
 }
 
 .filter-select {
-    @apply hover:cursor-pointer bg-linear-to-r from-emerald-200 via-emerald-300 to-emerald-400 dark:from-emerald-400 dark:via-emerald-500 dark:to-emerald-600 hover:bg-linear-to-br inline-flex items-center justify-center font-medium rounded-xl text-sm px-3 py-2 focus:outline-none;
+    @apply hover:cursor-pointer bg-linear-to-r transition delay-0 duration-100 ease-in from-emerald-200 via-emerald-300 to-emerald-400 dark:from-emerald-400 dark:via-emerald-500 dark:to-emerald-600 secret:from-purple-400 secret:via-purple-500 secret:to-purple-600 hover:bg-linear-to-br inline-flex items-center justify-center font-medium rounded-xl text-sm px-3 py-2 focus:outline-none;
 }
 
 .table-cell-h {
