@@ -23,6 +23,55 @@ let films = [
     },
 ];
 
+$("#add-movie-btn").on("click", () => {
+    const titleInput = $("#input-name").val().trim();
+    const yearInput = $("#input-year").val().trim();
+    const authorInput = $("#input-author").val().trim();
+
+    const todayYear = new Date().getFullYear();
+    let errors = [];
+
+    // les verifications + push errors
+    if (titleInput.length < 2) {
+        errors.push("Le titre doit contenir au moins 2 caractères");
+    }
+
+    const yearNumber = parseInt(yearInput);
+    if (!/^\d{4}$/.test(yearInput) || yearNumber < 1900 || yearNumber > todayYear) {
+        errors.push(`L'année doit être un nombre de 4 chiffres entre 1900 et ${todayYear}`);
+    }
+
+    if (authorInput.length < 5) {
+        errors.push("Le nom du réalisateur doit contenir au moins 5 caractères");
+    }
+
+    // Affiche une erreur + renvoi à la ligne etc..
+    if (errors.length > 0) {
+        showAlert("Erreur dans le formulaire : <br>" + errors.join("<br>"), "error", 5000);
+        return;
+    }
+
+    // Formater les nom de film / realisateur
+    const formattedTitle = titleInput.charAt(0).toUpperCase() + titleInput.slice(1);
+    const formattedAuthor = authorInput.charAt(0).toUpperCase() + authorInput.slice(1);
+
+    films.push({
+        title: formattedTitle,
+        years: yearNumber,
+        authors: formattedAuthor,
+    });
+
+    // reload le tableau trié
+    renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
+
+    // Vide le formulaire
+    $("#input-name").val("");
+    $("#input-year").val("");
+    $("#input-author").val("");
+
+    showAlert("Film ajouté avec succès", "success", 3000);
+});
+
 // boucle sur tout le tableau filtré
 function renderTable(data) {
     $("#movie-table").html("");
@@ -39,8 +88,8 @@ function renderTable(data) {
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke-width="1.5"
-                                    stroke="currentColor"
-                                    class="size-6"
+                                    stroke="#FF3B3E"
+                                    class="size-6 hover:stroke-red-400 cool-transition hover:-translate-y-1 hover:scale-110"
                                 >
                                     <path
                                         stroke-linecap="round"
@@ -53,6 +102,33 @@ function renderTable(data) {
                     </tr>
         `);
     });
+}
+
+function showAlert(message, type = "success", duration = 3000) {
+    let alertBox = $("#alert-box");
+
+    // Verifie si alertBox est déjà dans le html ou non
+    if (alertBox.length === 0) {
+        $("body").append(`
+            <div id="alert-box" class="fixed top-5 right-5 px-4 py-3 rounded shadow-lg text-white z-50"></div>
+        `);
+        alertBox = $("#alert-box");
+    }
+
+    // Style selon le type donné
+    if (type === "success") {
+        alertBox.removeClass().addClass("fixed top-5 right-5 px-4 py-3 rounded shadow-lg bg-green-600 text-white");
+    } else {
+        alertBox.removeClass().addClass("fixed top-5 right-5 px-4 py-3 rounded shadow-lg bg-red-600 text-white");
+    }
+
+    // Affiche le message
+    alertBox.html(message).fadeIn();
+
+    // Disparait après X ms
+    setTimeout(() => {
+        alertBox.fadeOut();
+    }, duration);
 }
 
 let indexToDelete = null;

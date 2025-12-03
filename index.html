@@ -92,32 +92,36 @@
                 </article>
             </section>
             <!-- Section ajout de film -->
-            <section
-                id="add-table-section"
-                class="hidden flex-col justify-center mx-auto border p-5 desktop:w-2/4 tablet:w-3/4 w-4/4 m-5 small-text cool-transition bg-emerald-100 dark:bg-emerald-700 secret:bg-purple-700"
-            >
-                <label for="input-name" class="block mb-2.5 font-medium text-heading">Nom du film</label>
-                <input
-                    type="text"
-                    id="input-name"
-                    class="bg-white text-gray-500 dark:bg-gray-200 dark:text-black secret:bg-gray-200 secret:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                    placeholder="Deadpool"
-                />
-                <label for="input-year" class="block mb-2.5 font-medium text-heading">Année</label>
-                <input
-                    type="text"
-                    id="input-year"
-                    class="bg-white text-gray-500 dark:bg-gray-200 dark:text-black secret:bg-gray-200 secret:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                    placeholder="2016"
-                />
-                <label for="input-author" class="block mb-2.5 font-medium text-heading">Réalisateur</label>
-                <input
-                    type="text"
-                    id="input-author"
-                    class="bg-white text-gray-500 dark:bg-gray-200 dark:text-black secret:bg-gray-200 secret:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
-                    placeholder="Tim Miller"
-                />
-                <button type="button" class="w-fit mt-3 positive-btn self-center">Envoyer</button>
+            <section id="add-table-section" class="hidden">
+                <article
+                    class="flex flex-col justify-center mx-auto border p-5 desktop:w-2/4 tablet:w-3/4 w-4/4 m-5 small-text cool-transition bg-emerald-100 dark:bg-emerald-700 secret:bg-purple-700"
+                >
+                    <label for="input-name" class="block mb-2.5 font-medium text-heading">Nom du film</label>
+                    <input
+                        type="text"
+                        id="input-name"
+                        class="bg-white text-gray-500 dark:bg-gray-200 dark:text-black secret:bg-gray-200 secret:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                        placeholder="Deadpool"
+                    />
+                    <label for="input-year" class="block mb-2.5 font-medium text-heading">Année</label>
+                    <input
+                        type="text"
+                        id="input-year"
+                        class="bg-white text-gray-500 dark:bg-gray-200 dark:text-black secret:bg-gray-200 secret:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                        placeholder="2016"
+                    />
+                    <label for="input-author" class="block mb-2.5 font-medium text-heading">Réalisateur</label>
+                    <input
+                        type="text"
+                        id="input-author"
+                        class="bg-white text-gray-500 dark:bg-gray-200 dark:text-black secret:bg-gray-200 secret:text-black border border-default-medium rounded block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
+                        placeholder="Tim Miller"
+                    />
+                    <button type="button" id="add-movie-btn" class="w-fit mt-3 positive-btn self-center">
+                        Envoyer
+                    </button>
+                    <!-- pop-up erreurs (inséré dynamiquement avec JS) -->
+                </article>
             </section>
             <!-- Tableau des films (inséré dynamiquement avec JS) -->
             <table class="w-4/4 m-auto table-fixed border-collapse">
