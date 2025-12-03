@@ -13,6 +13,7 @@
             class="big-text w-1/1 bg-linear-to-r from-emerald-200 to-emerald-900 dark:from-emerald-900 dark:to-emerald-200 py-9 flex flex-row justify-evenly"
         >
             <h1 class="font-medium text-black dark:text-white flex items-center">Médiathèque</h1>
+            <!-- Bouton theme clair/sombre -->
             <button id="light-dark-btn" class="hover:cursor-pointer">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -45,6 +46,7 @@
                     />
                 </svg>
             </button>
+            <!-- Vers la page API -->
             <div class="dark:text-black text-white flex flex-row items-center">
                 <a href="#" class="flex items-center font-medium hover:underline">Vers API Film</a>
                 <svg
@@ -60,6 +62,7 @@
             </div>
         </header>
         <main class="medium-text w-3/4">
+            <!-- Bouton ajouter film + select tri -->
             <section id="filter-section" class="flex flex-row justify-around my-5">
                 <button type="button" id="add-table-btn" class="positive-btn">Ajouter un film</button>
                 <article class="flex flex-row items-center">
@@ -71,6 +74,7 @@
                     </select>
                 </article>
             </section>
+            <!-- Section ajout de film -->
             <section
                 id="add-table-section"
                 class="hidden flex-col justify-center mx-auto border p-5 desktop:w-2/4 tablet:w-3/4 w-4/4 m-5 small-text bg-emerald-100 dark:bg-emerald-500"
@@ -98,6 +102,7 @@
                 />
                 <button type="button" class="w-fit mt-3 positive-btn self-center">Envoyer</button>
             </section>
+            <!-- Tableau des films (inséré dynamiquement avec JS) -->
             <table class="w-4/4 m-auto table-fixed border-collapse">
                 <thead class="border border-stone-200 bg-emerald-200 dark:bg-emerald-700">
                     <tr>
@@ -110,6 +115,7 @@
                 <tbody id="movie-table" class="border border-stone-200 h-full"></tbody>
             </table>
         </main>
+        <!-- Pop-up pour supprimer un film -->
         <section
             id="delet-modal"
             class="hidden flex-col shadow-[0px_20px_100px_5000px_#00000024] dark:shadow-[0px_20px_100px_5000px_#00000059] small-text bg-white dark:bg-stone-800 dark:text-white border p-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

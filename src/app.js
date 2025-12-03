@@ -33,7 +33,7 @@ function renderTable(data) {
                         <td class="table-cell">${movie.years}</td>
                         <td class="table-cell">${movie.authors}</td>
                         <td class="table-cell text-center">
-                            <button id="delet-movie-btn" class="text-red-500 hover:cursor-pointer">
+                            <button class="delete-movie-btn text-red-500 hover:cursor-pointer" data-index="${films.indexOf(movie)}">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -55,6 +55,31 @@ function renderTable(data) {
     });
 }
 
+let indexToDelete = null;
+// Récupère l'index du data-set et ouvre la modale
+$(document).on("click", ".delete-movie-btn", function () {
+    indexToDelete = $(this).data("index");
+    $("#delet-modal").removeClass("hidden").addClass("flex");
+});
+
+// Ferme la modale sans supprimer
+$("#dont-delet-btn").on("click", function () {
+    $("#delet-modal").removeClass("flex").addClass("hidden");
+    indexToDelete = null;
+});
+
+// Supprime le film via l'index du data-set
+$("#delet-btn").on("click", function () {
+    if (indexToDelete !== null) {
+        films.splice(indexToDelete, 1);
+
+        renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
+    }
+
+    $("#delet-modal").removeClass("flex").addClass("hidden");
+    indexToDelete = null;
+});
+
 // filtre une première fois par nom au lancement du site
 renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
 
@@ -74,7 +99,7 @@ $("#filter-select").on("change", () => {
     renderTable(sortedMovies);
 });
 
-// Montre/cache la section pour ajouter un film en fonction de sa classe présente
+// Montre/cache la section pour ajouter un film
 $("#add-table-btn").on("click", () => {
     const tableSection = $("#add-table-section");
     if (tableSection.hasClass("hidden")) {
