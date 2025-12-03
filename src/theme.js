@@ -7,6 +7,7 @@ const starSVG = $("#THESTAR");
 
 const secretTheme = "secret";
 const clicksCountNeeded = 5;
+const maxInterval = 350;
 let clickCount = 0;
 let lastClickTime = 0;
 
@@ -38,7 +39,7 @@ function handleSecretClick() {
     const now = Date.now();
 
     // Si interval entre 2 clique respecté -> count++
-    if (now - lastClickTime < 250) {
+    if (now - lastClickTime < maxInterval) {
         clickCount++;
     } else {
         clickCount = 1;
