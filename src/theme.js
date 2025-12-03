@@ -3,7 +3,7 @@ import $ from "jquery";
 const html = $("html");
 const sunSVG = $("#THESUN");
 const moonSVG = $("#THEMOON");
-const secretSVG = $("#THESECRET");
+const starSVG = $("#THESTAR");
 
 const secretTheme = "secret";
 const clicksCountNeeded = 5;
@@ -74,12 +74,12 @@ function applyTheme(theme) {
     // cache tout les svg
     sunSVG.addClass("hidden").removeClass("flex");
     moonSVG.addClass("hidden").removeClass("flex");
-    secretSVG.addClass("hidden").removeClass("flex");
+    starSVG.addClass("hidden").removeClass("flex");
 
     // raffiche le svg correspondant au theme
     if (theme === "white") sunSVG.removeClass("hidden").addClass("flex");
     if (theme === "dark") moonSVG.removeClass("hidden").addClass("flex");
-    if (theme === secretTheme) secretSVG.removeClass("hidden").addClass("flex");
+    if (theme === secretTheme) starSVG.removeClass("hidden").addClass("flex");
 
     localStorage.setItem("theme", theme);
 }
