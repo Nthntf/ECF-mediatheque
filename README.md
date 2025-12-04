@@ -1,6 +1,6 @@
 # ECF Médiathèque
 
-## Travail effectué :
+## Techno utilisés :
 
 - Maquettage conçu avec : Pencil
 - Library CSS utilisé : Tailwindcss
@@ -10,8 +10,6 @@
 
 ---
 
-- Dans le fichier **_app.js_** vous trouverez un tableau d'objets avec 4 valeurs qui sera votre base de données à afficher lors de l'ouverture de votre page HTML.
-- Aucun script ou attribut JavaScript dois être présent dans le fichier HTML !
 - Tâche à accomplir :
     - [x] Afficher les films dans un tableau
     - [x] Créer un bouton **"Ajouter"** qui nous fera apparaître un formulaire
@@ -39,9 +37,6 @@
 ### Page Recherche film
 
 ---
-
-Dans un nouveau fichier JS, vous ferais des recherches via l'API OMDB
-Aucun script ou attribut JavaScript dois être présent dans le fichier HTML !
 
 - Tâche à accomplir :
     - [x] Créer un formulaire de Recherche
