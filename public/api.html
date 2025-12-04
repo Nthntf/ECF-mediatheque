@@ -113,15 +113,30 @@
                 </article>
                 <button type="button" id="add-movie-btn" class="mt-3 positive-btn self-center w-1/2">Envoyer</button>
             </section>
-            <section id="movies-container" class="flex flex-row flex-wrap justify-center">
+            <section id="movies-container" class="mb-24 flex flex-row flex-wrap justify-center">
                 <!-- Cards des films (inséré dynamiquement par JS) -->
             </section>
-            <section id="pagination" class="flex justify-center items-center gap-4 m-6">
-                <button id="prev-page" class="px-3 py-1.5 bg-linear-to-r from-emerald-200 to-emerald-400 dark:from-emerald-900 dark:to-emerald-400 secret:from-purple-900 secret:to-purple-400 rounded disabled:opacity-50">&#8592</button>
-                <span id="current-page" class="text-lg font-bold">1</span>
-                <button id="next-page" class="px-3 py-1.5 bg-linear-to-r from-emerald-200 to-emerald-400 dark:from-emerald-400 dark:to-emerald-900 secret:from-purple-400 secret:to-purple-900 rounded disabled:opacity-50">&#8594</button>
-            </section>
         </main>
-        <footer></footer>
+        <!-- Pagination de l'api -->
+        <footer
+            id="pagination"
+            class="medium-text w-full fixed bottom-0 left-0 z-50 flex justify-center items-center gap-4 m-0 py-4 bg-emerald-100 dark:bg-emerald-800 secret:bg-purple-800"
+        >
+            <button
+                id="prev-page"
+                class="px-8 py-1.5 bg-linear-to-r from-emerald-200 to-emerald-400 dark:from-emerald-900 dark:to-emerald-400 secret:from-purple-900 secret:to-purple-400 rounded disabled:opacity-50"
+            >
+                &#8592;
+            </button>
+
+            <span id="current-page" class="text-lg font-bold">1</span>
+
+            <button
+                id="next-page"
+                class="px-8 py-1.5 bg-linear-to-r from-emerald-200 to-emerald-400 dark:from-emerald-400 dark:to-emerald-900 secret:from-purple-400 secret:to-purple-900 rounded disabled:opacity-50"
+            >
+                &#8594;
+            </button>
+        </footer>
     </body>
 </html>
