@@ -1,45 +1,76 @@
 import $ from "jquery";
 
+let page = 1;
+let lastSearch = "";
+let lastType = "";
+let lastYear = "";
+
 // Attend que le dom soit chargé
 $(function () {
     $("#add-movie-btn").on("click", async function () {
-        const title = $("#input-name").val().trim();
-        const year = $("#input-year").val().trim();
-        const type = $("#filter-select").val();
+        page = 1;
+        searchMovies();
+    });
 
-        if (!title) {
-            alert("Veuillez entrer un titre.");
+    // Pagination page precedente
+    $("#prev-page").on("click", function () {
+        if (page > 1) {
+            page--;
+            searchMovies();
+        }
+    });
+
+    // Page suivante
+    $("#next-page").on("click", function () {
+        page++;
+        searchMovies();
+    });
+});
+
+async function searchMovies() {
+    const title = $("#input-name").val().trim();
+    const year = $("#input-year").val().trim();
+    const type = $("#filter-select").val();
+
+    if (!title) {
+        alert("Veuillez entrer un titre.");
+        return;
+    }
+
+    // Sauvegarde pour pagination
+    lastSearch = title;
+    lastType = type;
+    lastYear = year;
+
+    let url = `https://www.omdbapi.com/?apikey=2817ef7d&s=${encodeURIComponent(title)}&page=${page}`;
+
+    // si n'est pas "-- type --" ajoute $type= à l'url"
+    if (type !== "-- type --") url += `&type=${type}`;
+    // pareil si year existe $y=year
+    if (year) url += `&y=${year}`;
+
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.Response === "False") {
+            // si aucun film trouvé affiche petit message :
+            $("#movies-container").html(`
+                <p class="text-red-600 text-xl">Aucun résultat trouvé.</p>
+            `);
+            $("#pagination").hide();
             return;
         }
 
-        let url = `https://www.omdbapi.com/?apikey=2817ef7d&s=${encodeURIComponent(title)}`;
-
-        // si n'est pas "-- type --" ajoute $type= à l'url"
-        if (type !== "-- type --") url += `&type=${type}`;
-        // pareil si year existe &y=year
-        if (year) url += `&y=${year}`;
-
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-
-            if (data.Response === "False") {
-                // si aucun film trouvé affiche petit message :
-                $("#movies-container").html(`
-                    <p class="text-red-600 text-xl">Aucun résultat trouvé.</p>
-                `);
-                return;
-            }
-
-            displayMovies(data.Search);
-        } catch (error) {
-            console.error(error);
-            $("#movies-container").html(`
-                <p class="text-red-600 text-xl">Erreur lors de la connexion à l'API.</p>
-            `);
-        }
-    });
-});
+        displayMovies(data.Search);
+        updatePagination(data.totalResults);
+    } catch (error) {
+        console.error(error);
+        $("#movies-container").html(`
+            <p class="text-red-600 text-xl">Erreur lors de la connexion à l'API.</p>
+        `);
+    }
+}
 
 function displayMovies(movies) {
     // reset
@@ -65,4 +96,14 @@ function displayMovies(movies) {
             </div>
         `);
     });
+}
+
+function updatePagination(totalResults) {
+    const totalPages = Math.ceil(totalResults / 10);
+
+    $("#pagination").show();
+    $("#current-page").text(page);
+
+    $("#prev-page").prop("disabled", page <= 1);
+    $("#next-page").prop("disabled", page >= totalPages);
 }

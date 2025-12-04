@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="" lang="en">
+<html class="" lang="fr">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -85,9 +85,9 @@
                 <article class="flex flex-row items-center">
                     <p class="small-text me-1.5">trier par:</p>
                     <select name="filters" id="filter-select" class="filter-select">
-                        <option class="dark:text-black" value="movie-name">Nom du film</option>
-                        <option class="dark:text-black" value="year">Année</option>
-                        <option class="dark:text-black" value="author-name">Réalisateur</option>
+                        <option class="dark:text-black secret:text-black" value="movie-name">Nom du film</option>
+                        <option class="dark:text-black secret:text-black" value="year">Année</option>
+                        <option class="dark:text-black secret:text-black" value="author-name">Réalisateur</option>
                     </select>
                 </article>
             </section>
@@ -120,7 +120,7 @@
                     <button type="button" id="add-movie-btn" class="w-fit mt-3 positive-btn self-center">
                         Envoyer
                     </button>
-                    <!-- pop-up erreurs (inséré dynamiquement avec JS) -->
+                    <!-- pop-up erreurs/success (inséré dynamiquement avec JS) -->
                 </article>
             </section>
             <!-- Tableau des films (inséré dynamiquement avec JS) -->
@@ -138,7 +138,7 @@
                 <tbody id="movie-table" class="border border-stone-200 h-full"></tbody>
             </table>
         </main>
-        <!-- Pop-up pour supprimer un film -->
+        <!-- Modal pour supprimer un film -->
         <section
             id="delet-modal"
             class="hidden cool-transition flex-col shadow-[0px_20px_100px_5000px_#00000024] dark:shadow-[0px_20px_100px_5000px_#00000059] small-text bg-white dark:bg-stone-800 dark:text-white secret:bg-stone-800 secret:text-white border p-5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"

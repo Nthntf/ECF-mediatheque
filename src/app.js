@@ -23,6 +23,17 @@ let films = [
     },
 ];
 
+// Montre/cache la section pour ajouter un film
+$("#add-table-btn").on("click", () => {
+    const tableSection = $("#add-table-section");
+    if (tableSection.hasClass("hidden")) {
+        tableSection.removeClass("hidden").addClass("flex");
+    } else {
+        tableSection.removeClass("flex").addClass("hidden");
+    }
+});
+
+// Ajoute un film au tableau de film
 $("#add-movie-btn").on("click", () => {
     const titleInput = $("#input-name").val().trim();
     const yearInput = $("#input-year").val().trim();
@@ -104,6 +115,7 @@ function renderTable(data) {
     });
 }
 
+// Montre un msg d'alerte avec comme paramètre par défaut celui de la réussite
 function showAlert(message, type = "success", duration = 3000) {
     let alertBox = $("#alert-box");
 
@@ -173,14 +185,4 @@ $("#filter-select").on("change", () => {
     }
 
     renderTable(sortedMovies);
-});
-
-// Montre/cache la section pour ajouter un film
-$("#add-table-btn").on("click", () => {
-    const tableSection = $("#add-table-section");
-    if (tableSection.hasClass("hidden")) {
-        tableSection.removeClass("hidden").addClass("flex");
-    } else {
-        tableSection.removeClass("flex").addClass("hidden");
-    }
 });

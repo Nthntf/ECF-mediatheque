@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="" lang="en">
+<html class="" lang="fr">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -79,7 +79,7 @@
                     />
                 </svg>
             </button>
-            <!-- Vers la page API -->
+            <!-- Vers la page Médiathèque -->
             <h1 class="font-medium text-black dark:text-white flex items-center">API Films</h1>
         </header>
         <main class="medium-text w-3/4 flex flex-col justify-center items-center">
@@ -115,6 +115,11 @@
             </section>
             <section id="movies-container" class="flex flex-row flex-wrap justify-center">
                 <!-- Cards des films (inséré dynamiquement par JS) -->
+            </section>
+            <section id="pagination" class="flex justify-center items-center gap-4 m-6">
+                <button id="prev-page" class="px-3 py-1.5 bg-linear-to-r from-emerald-200 to-emerald-400 dark:from-emerald-900 dark:to-emerald-400 secret:from-purple-900 secret:to-purple-400 rounded disabled:opacity-50">&#8592</button>
+                <span id="current-page" class="text-lg font-bold">1</span>
+                <button id="next-page" class="px-3 py-1.5 bg-linear-to-r from-emerald-200 to-emerald-400 dark:from-emerald-400 dark:to-emerald-900 secret:from-purple-400 secret:to-purple-900 rounded disabled:opacity-50">&#8594</button>
             </section>
         </main>
         <footer></footer>
