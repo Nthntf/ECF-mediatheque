@@ -89,9 +89,9 @@ function renderTable(data) {
     data.forEach((movie) => {
         $("#movie-table").append(`
                     <tr class="h-16">
-                        <td class="table-cell">${movie.title}</td>
-                        <td class="table-cell">${movie.years}</td>
-                        <td class="table-cell">${movie.authors}</td>
+                        <td class="table-cell">${neutralizeXSS(movie.title)}</td>
+                        <td class="table-cell">${neutralizeXSS(movie.years)}</td>
+                        <td class="table-cell">${neutralizeXSS(movie.authors)}</td>
                         <td class="table-cell text-center">
                             <button class="delete-movie-btn text-red-500 hover:cursor-pointer" data-index="${films.indexOf(movie)}">
                                 <svg
@@ -186,3 +186,14 @@ $("#filter-select").on("change", () => {
 
     renderTable(sortedMovies);
 });
+
+// Sécurité
+function neutralizeXSS(str) {
+    // Transforme certains caractère potentiellement dangereux en sa version chaine de texte
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}

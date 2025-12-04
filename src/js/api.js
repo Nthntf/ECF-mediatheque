@@ -87,12 +87,12 @@ function displayMovies(movies) {
                 <img
                     class="rounded-2xl"
                     onerror="this.onerror=null; this.src='https://placehold.co/300x450?text=No+Image';"
-                    src="${movie.Poster}"
-                    alt="${movie.Title}"
+                    src="${neutralizeXSS(movie.Poster)}"
+                    alt="${neutralizeXSS(movie.Title)}"
                 />
 
-                <p class="text-3xl text-center">${movie.Title}</p>
-                <p class="small-text text-right">- ${movie.Year}</p>
+                <p class="text-3xl text-center">${neutralizeXSS(movie.Title)}</p>
+                <p class="small-text text-right">- ${neutralizeXSS(movie.Year)}</p>
             </div>
         `);
     });
@@ -106,4 +106,15 @@ function updatePagination(totalResults) {
 
     $("#prev-page").prop("disabled", page <= 1);
     $("#next-page").prop("disabled", page >= totalPages);
+}
+
+// Sécurité
+function neutralizeXSS(str) {
+    // Transforme certains caractère potentiellement dangereux en sa version chaine de texte
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
 }
