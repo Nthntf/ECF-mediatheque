@@ -179,7 +179,7 @@ $("#filter-select").on("change", () => {
     if (filterValue === "movie-name") {
         sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
     } else if (filterValue === "year") {
-        sortedMovies.sort((a, b) => a.years - b.years);
+        sortedMovies.sort((a, b) => b.years - a.years);
     } else if (filterValue === "author-name") {
         sortedMovies.sort((a, b) => a.authors.localeCompare(b.authors));
     }
