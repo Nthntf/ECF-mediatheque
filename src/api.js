@@ -23,7 +23,7 @@ $(function () {
             const response = await fetch(url);
             const data = await response.json();
 
-            if (data.Response === "false") {
+            if (data.Response === "False") {
                 // si aucun film trouvé affiche petit message :
                 $("#movies-container").html(`
                     <p class="text-red-600 text-xl">Aucun résultat trouvé.</p>
