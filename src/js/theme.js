@@ -16,6 +16,13 @@ let lastClickTime = 0;
 initTheme();
 
 // ======================== LISTENERS ========================
+/**
+ * Toggle du thème lors du clic
+ * Gère d'abod le click secret, puis alterne entre les thèmes
+ *
+ * @event click
+ * @returns {void}
+ */
 $("#light-dark-btn").on("click", () => {
     // return true si clique rapide
     if (handleSecretClick()) {
@@ -34,13 +41,23 @@ $("#light-dark-btn").on("click", () => {
 
 // ======================== FONCTIONS ========================
 
-// Récupère le theme dans localstorage et l'applique (white si rien)
+/**
+ * Init le thème de l'application à partir du local storage
+ * Si aucun thème n'est trouvé -> applique le thème par défaut ("white")
+ *
+ * @function initTheme
+ */
 function initTheme() {
     const theme = localStorage.getItem("theme") || "white";
     applyTheme(theme);
 }
 
-// Toggle white <-> dark
+/**
+ * Bascule entre le thème clair ("white") et le thème sombre ("dark")
+ * Lit le thème actuel dans le stockage local et applique l'autre thème
+ *
+ * @function toggleNormalTheme
+ */
 function toggleNormalTheme() {
     const current = localStorage.getItem("theme") || "white";
 
@@ -48,6 +65,14 @@ function toggleNormalTheme() {
     else applyTheme("dark");
 }
 
+/**
+ * Gère le clic secret pour activer le thème caché
+ * Incrémente un compteur si les clics successifs sont dans l'intervalle autorisé
+ * Applique le thème secret lorsque le nombre de clics requis est atteint
+ *
+ * @function handleSecretClick
+ * @returns {boolean} Retourne true si le thème secret est activé, sinon false
+ */
 function handleSecretClick() {
     const now = Date.now();
 
@@ -69,7 +94,13 @@ function handleSecretClick() {
 
     return false;
 }
-
+/**
+ * Applique le thème spécifié à l'application
+ * Met à jour les classes HTML, affiche/ache les icônes correspondants et sauvegarde le thèmpe
+ *
+ * @function applyTheme
+ * @param {string} theme - Thème à appliquer
+ */
 function applyTheme(theme) {
     // vide les classes de html
     html.removeClass("dark secret white");

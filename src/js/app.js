@@ -31,7 +31,10 @@ renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
 
 // ================================= LISTENERS =================================
 
-// Montre/cache la section pour ajouter un film
+/**
+ * Montre / cache la section pour ajouter un film
+ * @event click
+ */
 $("#add-table-btn").on("click", () => {
     const tableSection = $("#add-table-section");
     if (tableSection.hasClass("hidden")) {
@@ -41,7 +44,11 @@ $("#add-table-btn").on("click", () => {
     }
 });
 
-// Ajoute un film au tableau de film
+/**
+ * Ajoute un nouveau film au tableau après validation du formulaire
+ * Vérifie la longueur du titre, l'auteur et la validité de l'année
+ * @event click
+ */
 $("#add-movie-btn").on("click", () => {
     const titleInput = $("#input-name").val().trim();
     const yearInput = $("#input-year").val().trim();
@@ -91,19 +98,28 @@ $("#add-movie-btn").on("click", () => {
     showAlert("Film ajouté avec succès", "success", 3000);
 });
 
-// Récupère l'index du data-set et ouvre la modale
+/**
+ * Récupère l'index du data-set et ouvre la modale
+ * @event click
+ */
 $(document).on("click", ".delete-movie-btn", function () {
     indexToDelete = $(this).data("index");
     $("#delet-modal").removeClass("hidden").addClass("flex");
 });
 
-// Ferme la modale sans supprimer
+/**
+ * Ferme la modale sans supprimer
+ * @event click
+ */
 $("#dont-delet-btn").on("click", function () {
     $("#delet-modal").removeClass("flex").addClass("hidden");
     indexToDelete = null;
 });
 
-// Supprime le film via l'index du data-set
+/**
+ * Supprime le film via l'index du data-set
+ * @event click
+ */
 $("#delet-btn").on("click", function () {
     if (indexToDelete !== null) {
         films.splice(indexToDelete, 1);
@@ -114,7 +130,11 @@ $("#delet-btn").on("click", function () {
     indexToDelete = null;
 });
 
-// Filtre via <select>
+/**
+ * Trie le tableau de films selon le critère sélectionné dans le filtre
+ * Met à jour l'affichage du tableau
+ * @event click
+ */
 $("#filter-select").on("change", () => {
     const filterValue = $("#filter-select").val();
     let sortedMovies = [...films];
@@ -132,7 +152,12 @@ $("#filter-select").on("change", () => {
 
 // ================================= FONCTIONS =================================
 
-// boucle sur tout le tableau filtré
+/**
+ * Remplit le tableau HTML avec les films fournis en données
+ * Chaque ligne contient, titre, année et l'auteur avec un bouton de suppression
+ *
+ * @param {Array<Object>} data - Liste des films à afficher dans le tableau
+ */
 function renderTable(data) {
     $("#movie-table").html("");
     data.forEach((movie) => {
@@ -164,7 +189,15 @@ function renderTable(data) {
     });
 }
 
-// Montre un msg d'alerte avec comme paramètre par défaut celui de la réussite
+/**
+ *
+ * Affiche un message d'alerte temporaire à l'écran
+ * Créer un conteneur d'alerte si il n'existe pas et applique un style selon le type
+ *
+ * @param {string} message - Texte à afficher dans l'alerte
+ * @param {string} [type="succes"] - Type de l'alerte : "succes" ou "error"
+ * @param {number} [duration=3000] - Durée en ms avant disparition automatique
+ */
 function showAlert(message, type = "success", duration = 3000) {
     let alertBox = $("#alert-box");
 
@@ -192,7 +225,14 @@ function showAlert(message, type = "success", duration = 3000) {
     }, duration);
 }
 
-// Sécurité
+/**
+ * Neutralise les caractères potentiellement dangereux afin d’éviter les injections XSS
+ * Remplace les symboles HTML sensibles par leurs équivalents échappés
+ *
+ * @function neutralizeXSS
+ * @param {string} str - Chaine à sécuriser
+ * @returns {string} - Chaine sécurisée
+ */
 function neutralizeXSS(str) {
     // Transforme certains caractère potentiellement dangereux en sa version chaine de texte
     return String(str)
