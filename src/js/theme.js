@@ -1,5 +1,6 @@
 import $ from "jquery";
 
+// ======================== CONSTANTES & VARIABLES ========================
 const html = $("html");
 const sunSVG = $("#THESUN");
 const moonSVG = $("#THEMOON");
@@ -11,8 +12,10 @@ const maxInterval = 350;
 let clickCount = 0;
 let lastClickTime = 0;
 
+// ======================== INITIALISATION ========================
 initTheme();
 
+// ======================== LISTENERS ========================
 $("#light-dark-btn").on("click", () => {
     // return true si clique rapide
     if (handleSecretClick()) {
@@ -29,10 +32,20 @@ $("#light-dark-btn").on("click", () => {
     toggleNormalTheme();
 });
 
+// ======================== FONCTIONS ========================
+
 // Récupère le theme dans localstorage et l'applique (white si rien)
 function initTheme() {
     const theme = localStorage.getItem("theme") || "white";
     applyTheme(theme);
+}
+
+// Toggle white <-> dark
+function toggleNormalTheme() {
+    const current = localStorage.getItem("theme") || "white";
+
+    if (current === "dark") applyTheme("white");
+    else applyTheme("dark");
 }
 
 function handleSecretClick() {
@@ -55,14 +68,6 @@ function handleSecretClick() {
     }
 
     return false;
-}
-
-// Toggle white <-> dark
-function toggleNormalTheme() {
-    const current = localStorage.getItem("theme") || "white";
-
-    if (current === "dark") applyTheme("white");
-    else applyTheme("dark");
 }
 
 function applyTheme(theme) {

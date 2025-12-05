@@ -1,5 +1,6 @@
 import $ from "jquery";
 
+// ================================= VARIABLES GLOBALES =================================
 let films = [
     {
         title: "Deadpool",
@@ -22,6 +23,13 @@ let films = [
         authors: "Andy Muschietti",
     },
 ];
+
+let indexToDelete = null;
+
+// ================================= INITIALISATION =================================
+renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
+
+// ================================= LISTENERS =================================
 
 // Montre/cache la section pour ajouter un film
 $("#add-table-btn").on("click", () => {
@@ -83,6 +91,47 @@ $("#add-movie-btn").on("click", () => {
     showAlert("Film ajouté avec succès", "success", 3000);
 });
 
+// Récupère l'index du data-set et ouvre la modale
+$(document).on("click", ".delete-movie-btn", function () {
+    indexToDelete = $(this).data("index");
+    $("#delet-modal").removeClass("hidden").addClass("flex");
+});
+
+// Ferme la modale sans supprimer
+$("#dont-delet-btn").on("click", function () {
+    $("#delet-modal").removeClass("flex").addClass("hidden");
+    indexToDelete = null;
+});
+
+// Supprime le film via l'index du data-set
+$("#delet-btn").on("click", function () {
+    if (indexToDelete !== null) {
+        films.splice(indexToDelete, 1);
+        renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
+    }
+
+    $("#delet-modal").removeClass("flex").addClass("hidden");
+    indexToDelete = null;
+});
+
+// Filtre via <select>
+$("#filter-select").on("change", () => {
+    const filterValue = $("#filter-select").val();
+    let sortedMovies = [...films];
+
+    if (filterValue === "movie-name") {
+        sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (filterValue === "year") {
+        sortedMovies.sort((a, b) => b.years - a.years);
+    } else if (filterValue === "author-name") {
+        sortedMovies.sort((a, b) => a.authors.localeCompare(b.authors));
+    }
+
+    renderTable(sortedMovies);
+});
+
+// ================================= FONCTIONS =================================
+
 // boucle sur tout le tableau filtré
 function renderTable(data) {
     $("#movie-table").html("");
@@ -142,50 +191,6 @@ function showAlert(message, type = "success", duration = 3000) {
         alertBox.fadeOut();
     }, duration);
 }
-
-let indexToDelete = null;
-// Récupère l'index du data-set et ouvre la modale
-$(document).on("click", ".delete-movie-btn", function () {
-    indexToDelete = $(this).data("index");
-    $("#delet-modal").removeClass("hidden").addClass("flex");
-});
-
-// Ferme la modale sans supprimer
-$("#dont-delet-btn").on("click", function () {
-    $("#delet-modal").removeClass("flex").addClass("hidden");
-    indexToDelete = null;
-});
-
-// Supprime le film via l'index du data-set
-$("#delet-btn").on("click", function () {
-    if (indexToDelete !== null) {
-        films.splice(indexToDelete, 1);
-
-        renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
-    }
-
-    $("#delet-modal").removeClass("flex").addClass("hidden");
-    indexToDelete = null;
-});
-
-// filtre une première fois par nom au lancement du site
-renderTable([...films].sort((a, b) => a.title.localeCompare(b.title)));
-
-// créer un nouveau tableau avec conditions de filtre en fonction de <select>.value
-$("#filter-select").on("change", () => {
-    const filterValue = $("#filter-select").val();
-    let sortedMovies = [...films];
-
-    if (filterValue === "movie-name") {
-        sortedMovies.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (filterValue === "year") {
-        sortedMovies.sort((a, b) => b.years - a.years);
-    } else if (filterValue === "author-name") {
-        sortedMovies.sort((a, b) => a.authors.localeCompare(b.authors));
-    }
-
-    renderTable(sortedMovies);
-});
 
 // Sécurité
 function neutralizeXSS(str) {

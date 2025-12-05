@@ -1,11 +1,12 @@
 import $ from "jquery";
 
+// ======================== VARIABLES GLOBALES ========================
 let page = 1;
 let lastSearch = "";
 let lastType = "";
 let lastYear = "";
 
-// Attend que le dom soit chargé
+// ======================== LISTENERS ========================
 $(function () {
     $("#add-movie-btn").on("click", async function () {
         page = 1;
@@ -27,6 +28,8 @@ $(function () {
     });
 });
 
+// ======================== FONCTIONS ========================
+
 async function searchMovies() {
     const title = $("#input-name").val().trim();
     const year = $("#input-year").val().trim();
@@ -46,7 +49,7 @@ async function searchMovies() {
 
     // si n'est pas "-- type --" ajoute $type= à l'url"
     if (type !== "-- type --") url += `&type=${type}`;
-    // pareil si year existe $y=year
+    // pareil si year existe -> $y=year
     if (year) url += `&y=${year}`;
 
     try {
