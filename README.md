@@ -6,7 +6,7 @@ Lien dépôt GitHub : https://github.com/Nthntf/ECF-mediatheque
 
 - Maquettage conçu avec : Pencil
 - Library CSS utilisé : Tailwindcss
-- Library Javascript utilisé : jQuery
+- Library Javascript utilisé : jQuery, JSdoc
 
 ### Page Vidéothéque
 
